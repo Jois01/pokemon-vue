@@ -20,12 +20,13 @@
         </div>
         <div class="flex gap-2 mt-4">
           <button
-            class="flex gap-2 items-center bg-cyan-600 border border-gray-900 py-2 px-3 text-gray-900 rounded-md shadow-md shadow-black hover:bg-cyan-500 hover:shadow-none ease-in-out duration-700"
+            class="flex gap-2 text-white items-center bg-cyan-700 border hover:border-gray-900 py-1 px-3 hover:text-gray-900 rounded-md shadow-md shadow-black hover:bg-cyan-500 hover:shadow-none ease-in-out duration-700"
           >
             view
           </button>
           <button
-            class="flex gap-2 items-center bg-gray-900 py-2 px-3 border border-gray-300 text-emerald-600 rounded-md shadow-md shadow-black hover:bg-gray-800 hover:shadow-none ease-in-out duration-700"
+            @click="open = true"
+            class="flex gap-2 text-white items-center bg-cyan-700 border hover:border-gray-900 py-1 px-3 hover:text-gray-900 rounded-md shadow-md shadow-black hover:bg-cyan-500 hover:shadow-none ease-in-out duration-700"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -47,10 +48,24 @@
       </div>
     </div>
   </div>
+  <!-- modal -->
+  <modalKoleksi v-if="open" @close-modal="closeModal" />
 </template>
 <script>
+import modalKoleksi from './modalKoleksi.vue'
 import { usePokemonStore } from '@/stores/pokemonStore'
 export default {
+  data() {
+    return {
+      open: false,
+    }
+  },
+  components: { modalKoleksi },
+  methods: {
+    closeModal() {
+      this.open = false
+    },
+  },
   setup() {
     const pokemonStore = usePokemonStore()
 
