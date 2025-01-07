@@ -2,7 +2,7 @@
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
     <div class="text-5xl font-bold text-center text-gray-900 my-8">Pokemon</div>
     <div
-      class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+      class="grid grid-cols-1 gap-x-6 mx-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
     >
       <div
         v-for="pokemon in pokemons"
@@ -13,17 +13,20 @@
         <h3 class="mt-4 text-xl font-bold text-gray-900">{{ pokemon.pokemon }}</h3>
         <div class="mt-1 gap-2 font-medium text-gray-900 grid grid-cols-2">
           <div class="items-start text-center" v-for="abiliti in pokemon.abilities" :key="abiliti">
-            <div class="bg-gray-900 border border-gray-200 rounded-md text-emerald-600">
+            <div
+              class="bg-gray-900 py-1 border text-sm border-gray-200 rounded-md text-emerald-600"
+            >
               {{ abiliti }}
             </div>
           </div>
         </div>
         <div class="flex gap-2 mt-4">
-          <button
+          <RouterLink
+            :to="{ name: 'pokemonDetail', params: { id: pokemon.id } }"
             class="flex gap-2 text-white items-center bg-cyan-700 border hover:border-gray-900 py-1 px-3 hover:text-gray-900 rounded-md shadow-md shadow-black hover:bg-cyan-500 hover:shadow-none ease-in-out duration-700"
           >
             view
-          </button>
+          </RouterLink>
           <button
             @click="open = true"
             class="flex gap-2 text-white items-center bg-cyan-700 border hover:border-gray-900 py-1 px-3 hover:text-gray-900 rounded-md shadow-md shadow-black hover:bg-cyan-500 hover:shadow-none ease-in-out duration-700"
@@ -64,6 +67,20 @@ export default {
   methods: {
     closeModal() {
       this.open = false
+    },
+    save() {
+      const koleksiItem = {
+        id: this.pokemon.id,
+        image_url: this.pokemon.image_url,
+        title: this.pokemon.title,
+      }
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || []
+      const existingItem = cart.find((item) => item.id === cartItem.id)
+      cart.push(cartItem)
+
+      localStorage.setItem('cart', JSON.stringify(cart))
+      alert('Product added to cart!')
     },
   },
   setup() {

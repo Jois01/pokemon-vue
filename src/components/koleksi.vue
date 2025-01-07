@@ -10,7 +10,7 @@
         class="group border border-gray-300 bg-white shadow-md shadow-gray-300 pb-4 rounded-md p-2"
       >
         <img :src="pokemon.image_url" class="w-full rounded-lg bg-gray-200" />
-        <h3 class="mt-4 text-xl font-bold text-gray-900">{{ pokemon.name }}</h3>
+        <h3 class="mt-4 text-xl font-bold text-gray-900">{{ pokemon.pokemon }}</h3>
         <div class="mt-1 gap-2 font-medium text-gray-900 grid grid-cols-2">
           <div class="items-start text-center" v-for="abiliti in pokemon.abilities" :key="abiliti">
             <div class="bg-gray-900 border border-gray-200 rounded-md text-emerald-600">

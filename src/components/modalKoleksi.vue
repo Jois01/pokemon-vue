@@ -9,6 +9,7 @@
         <p>tambahkan pokemon ini ke koleksi?</p>
         <div class="flex gap-4 mt-8">
             <button
+            @click="closeModal"
             class="flex gap-2 items-center bg-red-600 border border-gray-900 py-1 px-3 text-white rounded-md shadow-md shadow-black hover:bg-red-500 hover:shadow-none ease-in-out duration-700"
           >
             cancel
